@@ -44,7 +44,7 @@ function Table({ leagueId }: TableProps) {
               <th>Pts</th>
               <th>GF</th>
               <th>GA</th>
-              {/* <th>GD</th> */}
+              <th>GD</th>
             </tr>
           </thead>
           <tbody>
@@ -90,10 +90,10 @@ function Table({ leagueId }: TableProps) {
                   <td className="font-bold">{team.overall_league_PTS}</td>
                   <td>{team.overall_league_GA}</td>
                   <td>{team.overall_league_GF}</td>
-                  {/* <td>
+                  <td>
                     {parseInt(team.overall_league_GF) -
                       parseInt(team.overall_league_GA)}
-                  </td> */}
+                  </td>
                 </tr>
               );
             })}
