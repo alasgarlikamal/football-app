@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import fetchLeagueData from "../api/fetchLeagueData";
 import { TableProps } from "./types";
 import { useNavigate } from "react-router-dom";
+import { API_URL } from "../utils/constants";
 
 function Table({ leagueId }: TableProps) {
   const { isPending, isError, data, error } = useQuery({
@@ -18,19 +19,25 @@ function Table({ leagueId }: TableProps) {
   if (isError) {
     return <span>Error: {error.message}</span>;
   }
-  /*  */
+  const logoUrl = `${API_URL}/badges/logo_leagues/${
+    data[0].league_id
+  }_${data[0].league_name.toLowerCase().replace(" ", "-")}.png`;
+  console.log(logoUrl);
   console.log(data);
 
   return (
     <div className="flex flex-col gap-4 overflow-x-auto text-white">
-      <div className="flex justify-between">
+      <div className="flex items-center justify-between">
         <button
           className="p-2 transition duration-200 rounded-md bg-slate-800 hover:bg-slate-900"
           onClick={() => navigate("/")}
         >
           Go back
         </button>
-        <h1 className="font-bold">{data[0].league_name}</h1>
+        <div className="flex items-center gap-4">
+          <img src={logoUrl} className="h-10" alt="" />
+          <h1 className="font-bold">{data[0].league_name}</h1>
+        </div>
       </div>
       <div className="p-3 rounded-md w-fit bg-slate-800">
         <table className="text-white table-auto ">
